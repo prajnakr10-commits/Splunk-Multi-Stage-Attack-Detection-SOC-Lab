@@ -1,0 +1,32 @@
+
+index=soc_attack_detection
+(sourcetype="soc:web" OR sourcetype="soc:auth" OR sourcetype="soc:network")
+| where
+    (src_ip="198.51.100.77" AND
+       (sourcetype="soc:web" OR sourcetype="soc:auth"))
+    OR
+    (sourcetype="soc:network" AND src_ip="10.0.0.20")
+| eval activity=case(
+    sourcetype="soc:network" AND tonumber(bytes_out)>5000000,
+        "Large Outbound Network Flow",
+    sourcetype="soc:web" AND status=404,
+        "Web Reconnaissance",
+    sourcetype="soc:web" AND match(lower(urldecode(uri)), "union\s+select"),
+        "SQL Injection Attempt",
+    sourcetype="soc:web" AND match(uri, "\.\./"),
+        "Path Traversal Attempt",
+    sourcetype="soc:auth" AND action="failure",
+        "Failed Login",
+    sourcetype="soc:auth" AND action="success",
+        "Successful Login",
+    sourcetype="soc:web" AND like(uri, "/admin/export/%"),
+        "Sensitive Resource Access",
+    true(), "Other Activity"
+)
+| eval outbound_mib=if(
+    sourcetype="soc:network",
+    round(tonumber(bytes_out)/1024/1024,2),
+    null()
+)
+| table _time sourcetype src_ip dest_ip user activity uri status action outbound_mib
+| sort 0 _time

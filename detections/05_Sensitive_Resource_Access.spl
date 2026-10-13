@@ -1,0 +1,10 @@
+
+index=soc_attack_detection sourcetype="soc:web"
+| where like(uri, "/admin/export/%")
+| eval access_status=case(
+    status=200, "Successful HTTP Response",
+    status=403, "Access Denied",
+    true(), "Other Response"
+)
+| table _time src_ip user method uri status access_status
+| sort 0 _time

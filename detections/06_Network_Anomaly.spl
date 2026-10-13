@@ -1,0 +1,8 @@
+
+index=soc_attack_detection sourcetype="soc:network"
+| eval bytes_out=tonumber(bytes_out)
+| where bytes_out>5000000
+| eval outbound_mib=round(bytes_out/1024/1024,2)
+| eval traffic_classification="High Outbound Traffic"
+| table _time src_ip dest_ip dest_port outbound_mib action traffic_classification
+| sort - outbound_mib

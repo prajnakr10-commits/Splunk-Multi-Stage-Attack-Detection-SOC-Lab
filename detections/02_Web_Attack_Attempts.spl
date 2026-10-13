@@ -1,0 +1,10 @@
+
+index=soc_attack_detection sourcetype="soc:web"
+| eval decoded_uri=urldecode(uri)
+| eval attack_type=case(
+    match(lower(decoded_uri), "union\s+select"), "SQL Injection Attempt",
+    match(decoded_uri, "\.\./"), "Path Traversal Attempt"
+)
+| where isnotnull(attack_type)
+| table _time src_ip method uri status attack_type
+| sort 0 _time

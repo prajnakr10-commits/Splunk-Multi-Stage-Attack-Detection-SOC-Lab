@@ -1,0 +1,6 @@
+
+index=soc_attack_detection sourcetype="soc:auth"
+| sort 0 src_ip user _time
+| streamstats count(eval(action="failure")) as preceding_failures by src_ip user reset_after="(action=\"success\")"
+| where action="success" AND preceding_failures>=5
+| table _time src_ip user preceding_failures action

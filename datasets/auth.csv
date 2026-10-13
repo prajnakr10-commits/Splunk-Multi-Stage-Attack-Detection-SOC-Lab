@@ -1,0 +1,10 @@
+timestamp,src_ip,user,action,application
+2026-10-12T10:15:00,198.51.100.77,admin,failure,customer_portal
+2026-10-12T10:16:00,198.51.100.77,admin,failure,customer_portal
+2026-10-12T10:17:00,198.51.100.77,admin,failure,customer_portal
+2026-10-12T10:18:00,198.51.100.77,admin,failure,customer_portal
+2026-10-12T10:19:00,198.51.100.77,admin,failure,customer_portal
+2026-10-12T10:20:00,198.51.100.77,admin,failure,customer_portal
+2026-10-12T10:21:00,198.51.100.77,admin,failure,customer_portal
+2026-10-12T10:23:00,198.51.100.77,admin,success,customer_portal
+2026-10-12T10:06:00,192.0.2.25,alice,success,customer_portal

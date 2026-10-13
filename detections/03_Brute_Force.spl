@@ -1,0 +1,6 @@
+
+index=soc_attack_detection sourcetype="soc:auth" action="failure"
+| bin _time span=10m
+| stats count as failed_attempts by _time src_ip user
+| where failed_attempts >= 5
+| sort - failed_attempts
