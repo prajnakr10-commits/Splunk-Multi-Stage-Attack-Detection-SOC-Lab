@@ -95,6 +95,30 @@ The thresholds are designed for the synthetic dataset and would require tuning b
 
 ## SOC Dashboard
 
+### SOC Dashboard Screenshot
+
+![Splunk SOC Dashboard](Screenshots/SOC_Dashboard_Overview.png/Capture1.PNG)
+
+
+### Additional SOC Dashboard Screenshots
+
+**Dashboard Screenshot 2**
+
+![SOC Dashboard 2](Screenshots/SOC_Dashboard_Overview.png/Capture2.PNG)
+
+**Dashboard Screenshot 3**
+
+![SOC Dashboard 3](Screenshots/SOC_Dashboard_Overview.png/Capture3.PNG)
+
+**Dashboard Screenshot 4**
+
+![SOC Dashboard 4](Screenshots/SOC_Dashboard_Overview.png/Capture4.PNG)
+
+**Dashboard Screenshot 5**
+
+![SOC Dashboard 5](Screenshots/SOC_Dashboard_Overview.png/Capture5.PNG)
+
+
 Developed a Splunk Dashboard Studio dashboard titled **SOC - Multi Stage Attack Detection and Investigation**.
 
 The dashboard contains seven visualizations:
